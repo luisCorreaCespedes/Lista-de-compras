@@ -17,8 +17,25 @@ const createAll = () => {
             update (todos => todos.map((item) =>
             item.id === id ? { ...item, estado: !item.estado } : item
           ))
-        },
+        }
     }
 }
 
 export const todos = createAll();
+
+const createOpc = () => {
+    const {subscribe, set, update} = writable({ 
+    texto: '',
+    color: '',
+    estado: false
+    });
+
+    return{
+        subscribe,
+        mostrar: (opc) => {
+            update(n => n = opc)
+        }
+    }
+}
+
+export const opciones = createOpc();

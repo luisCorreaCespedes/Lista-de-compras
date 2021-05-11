@@ -1,5 +1,6 @@
 <script>
-  let todo = {
+    import { todos, opciones } from '../stores';
+    let todo = {
     id: "",
     texto: "",
     estado: false,
@@ -11,13 +12,19 @@
       return;
     }
     todo.id = Date.now();
-    todos = [...todos, todo];
+    todos.add(todo);
     todo = todo = {
       id: "",
       texto: "",
       estado: false,
     };
-    showToast("Artículo agregado!", "bg-primary");
+
+    opciones.mostrar({
+        texto: 'Artículo agregado!',
+        color: 'bg-primary',
+        estado: true
+    });
+
   };
 </script>
 
@@ -26,6 +33,7 @@
     type="text"
     placeholder="Escriba un articulo y presione ENTER"
     class="form-control shadow border-0"
+    style="background-color: lavenderblush;"
     bind:value={todo.texto}
   />
 </form>
